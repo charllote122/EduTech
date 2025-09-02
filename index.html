@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfriTutor - AI-Powered Education for Africa</title>
+    <meta name="description"
+        content="Progressive Web App for African students with AI tutoring, offline support, and multi-language features">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSIyNCIgZmlsbD0iIzI1NjNlYiIvPjxwYXRoIGQ9Ik05NiA0OEw3MiA5NkgxMjBMOTYgNDhaIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9Ijk2IiB5PSIxMzYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiPkFmcmlUdXRvcjwvdGV4dD48L3N2Zz4=">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --danger-color: #ef4444;
+            --success-color: #22c55e;
+            --warning-color: #f97316;
+            --dark-color: #1f2937;
+            --light-color: #f9fafb;
+            --border-color: #e5e7eb;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .language-selector {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            background: white;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .language-selector:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Feature Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .feature-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            color: var(--danger-color);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .file-upload {
+            border: 2px dashed var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+        }
+
+        .btn-warning {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #ea580c;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        /* Quiz Styles */
+        .quiz-question {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quiz-option {
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success-color);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--danger-color);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success-color);
+            border: 2px solid var(--success-color);
+        }
+
+        .status-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+            border: 2px solid var(--danger-color);
+        }
+
+        .status-info {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border-color);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        /* Network Status */
+        .network-status {
+            position: fixed;
+            top: 70px;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+
+        .network-online {
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+        }
+
+        .network-offline {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                max-width: calc(100vw - 2rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-section {
+                padding: 2rem 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .header,
+            .nav-actions,
+            .feature-btn,
+            .modal {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+            }
+
+            .feature-card,
+            .welcome-section {
+                background: white !important;
+                box-shadow: none !important;
+                border: 1px solid var(--border-color) !important;
+            }
+        }
+
+        /* High Contrast Mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #0000ff;
+                --secondary-color: #008000;
+                --text-primary: #000000;
+                --text-secondary: #333333;
+                --border-color: #000000;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Network Status -->
+    <div id="networkStatus" class="network-status network-online">
+        🌐 Online
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon">AT</div>
+                    AfriTutor
+                </a>
+                <div class="nav-actions">
+                    <select id="languageSelector" class="language-selector">
+                        <option value="en">English</option>
+                        <option value="sw">Kiswahili</option>
+                        <option value="yo">Yorùbá</option>
+                        <option value="ha">Hausa</option>
+                        <option value="am">አማርኛ</option>
+                        <option value="fr">Français</option>
+                    </select>
+                    <button id="installBtn" class="btn btn-primary" style="display: none;">
+                        📱 Install App
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h1 class="welcome-title" data-translate="welcome_title">
+                    Welcome to AfriTutor
+                </h1>
+                <p class="welcome-subtitle" data-translate="welcome_subtitle">
+                    AI-Powered Education Platform Designed for African Students
+                </p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%" id="appProgress"></div>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <!-- AI Tutoring -->
+                <div class="feature-card" data-feature="ai-tutor">
+                    <div class="feature-icon" style="background: var(--primary-color);">
+                        🤖
+                    </div>
+                    <h3 class="feature-title" data-translate="ai_tutor_title">AI Tutoring</h3>
+                    <p class="feature-description" data-translate="ai_tutor_desc">
+                        Get personalized tutoring powered by advanced AI technology
+                    </p>
+                    <button class="feature-btn" onclick="openModal('aiTutorModal')">
+                        <span data-translate="start_session">Start Session</span>
+                    </button>
+                </div>
+
+                <!-- PDF Processing -->
+                <div class="feature-card" data-feature="pdf-processor">
+                    <div class="feature-icon" style="background: var(--danger-color);">
+                        📄
+                    </div>
+                    <h3 class="feature-title" data-translate="pdf_processor_title">PDF Processor</h3>
+                    <p class="feature-description" data-translate="pdf_processor_desc">
+                        Upload and analyze PDF documents for study materials
+                    </p>
+                    <button class="feature-btn" onclick="openModal('pdfModal')">
+                        <span data-translate="upload_pdf">Upload PDF</span>
+                    </button>
+                </div>
+
+                <!-- Quiz Generator -->
+                <div class="feature-card" data-feature="quiz-gen">
+                    <div class="feature-icon" style="background: var(--secondary-color);">
+                        📝
+                    </div>
+                    <h3 class="feature-title" data-translate="quiz_gen_title">Quiz Generator</h3>
+                    <p class="feature-description" data-translate="quiz_gen_desc">
+                        Generate custom quizzes from your study materials
+                    </p>
+                    <button class="feature-btn" onclick="openModal('quizModal')">
+                        <span data-translate="create_quiz">Create Quiz</span>
+                    </button>
+                </div>
+
+                <!-- Flashcards -->
+                <div class="feature-card" data-feature="flashcards">
+                    <div class="feature-icon" style="background: var(--accent-color);">
+                        🃏
+                    </div>
+                    <h3 class="feature-title" data-translate="flashcards_title">Flashcards</h3>
+                    <p class="feature-description" data-translate="flashcards_desc">
+                        Create and study with interactive flashcards
+                    </p>
+                    <button class="feature-btn" onclick="openModal('flashcardsModal')">
+                        <span data-translate="create_flashcards">Create Flashcards</span>
+                    </button>
+                </div>
+
+                <!-- Progress Tracking -->
+                <div class="feature-card" data-feature="progress">
+                    <div class="feature-icon" style="background: var(--warning-color);">
+                        📊
+                    </div>
+                    <h3 class="feature-title" data-translate="progress_title">Progress Tracking</h3>
+                    <p class="feature-description" data-translate="progress_desc">
+                        Monitor your learning progress and achievements
+                    </p>
+                    <button class="feature-btn" onclick="openModal('progressModal')">
+                        <span data-translate="view_progress">View Progress</span>
+                    </button>
+                </div>
+
+                <!-- Offline Mode -->
+                <div class="feature-card" data-feature="offline">
+                    <div class="feature-icon" style="background: var(--dark-color);">
+                        📱
+                    </div>
+                    <h3 class="feature-title" data-translate="offline_title">Offline Mode</h3>
+                    <p class="feature-description" data-translate="offline_desc">
+                        Access your materials even without internet connection
+                    </p>
+                    <button class="feature-btn" onclick="toggleOfflineMode()">
+                        <span data-translate="manage_offline">Manage Offline</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- AI Tutor Modal -->
+    <div id="aiTutorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" data-translate="ai_tutor_title">AI Tutoring Session</h2>
+                <button class="close-btn" onclick="closeModal('aiTutorModal')">&times;</button>
+            </div>
+            <div id="aiTutorContent">
+                <div class="form-group">
+                    <label class="form-label" data-translate="select_subject">Select Subject:</label>
+                    <select id="subjectSelect" class="form-input">
+                        <option value="math">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="english">English</option>
+                        <option value="history">History</option>
+                        <option value="geography">Geography</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-translate="ask_question">Ask a Question:</label>
+                    <textarea id="tutorQuestion" class="form-input" rows="4"
+                        placeholder="Type your question here..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="askTutor()">
+                    <span data-translate="ask_tutor">Ask Tutor</span>
+                </button>
+                <div id="tutorResponse" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" data-translate="pdf_processor_title">PDF Processor</h2>
+                <button class="close-btn" onclick="closeModal('pdfModal')">&times;</button>
+            </div>
+            <div class="file-upload" id="pdfUpload">
+                <p data-translate="drag_drop_pdf">Drag and drop PDF files here or click to select</p>
+                <input type="file" id="pdfInput" accept=".pdf" multiple style="display: none;">
+            </div>
+            <div id="pdfResults" style="margin-top: 1rem;"></div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" data-translate="quiz_gen_title">Quiz Generator</h2>
+                <button class="close-btn" onclick="closeModal('quizModal')">&times;</button>
+            </div>
+            <div id="quizContent">
+                <div class="form-group">
+                    <label class="form-label" data-translate="quiz_topic">Quiz Topic:</label>
+                    <input type="text" id="quizTopic" class="form-input" placeholder="Enter quiz topic">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-translate="num_questions">Number of Questions:</label>
+                    <select id="numQuestions" class="form-input">
+                        <option value="5">5 Questions</option>
+                        <option value="10">10 Questions</option>
+                        <option value="15">15 Questions</option>
+                        <option value="20">20 Questions</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="generateQuiz()">
+                    <span data-translate="generate_quiz">Generate Quiz</span>
+                </button>
+                <div id="quizResults" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flashcards Modal -->
+    <div id="flashcardsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" data-translate="flashcards_title">Flashcards</h2>
+                <button class="close-btn" onclick="closeModal('flashcardsModal')">&times;</button>
+            </div>
+            <div id="flashcardsContent">
+                <div class="form-group">
+                    <label class="form-label" data-translate="flashcard_topic">Flashcard Topic:</label>
+                    <input type="text" id="flashcardTopic" class="form-input" placeholder="Enter flashcard topic">
+                </div>
+                <button class="btn btn-primary" onclick="createFlashcards()">
+                    <span data-translate="create_flashcards">Create Flashcards</span>
+                </button>
+                <div id="flashcardsResults" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" data-translate="progress_title">Learning Progress</h2>
+                <button class="close-btn" onclick="closeModal('progressModal')">&times;</button>
+            </div>
+            <div id="progressContent">
+                <div style="margin-bottom: 2rem;">
+                    <h3>Overall Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%" id="overallProgress"></div>
+                    </div>
+                    <p>65% Complete</p>
+                </div>
+                <div id="progressStats"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        initPDFUpload(pdfUpload, pdfInput) {
+            pdfUpload.addEventListener("click", () => pdfInput.click());
+            pdfInput.addEventListener("change", (e) => this.handlePDFUpload(e.target.files));
+
+            pdfUpload.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                pdfUpload.style.borderColor = "var(--primary-color)";
+            });
+
+            pdfUpload.addEventListener("dragleave", () => {
+                pdfUpload.style.borderColor = "var(--border-color)";
+            });
+
+            pdfUpload.addEventListener("drop", (e) => {
+                e.preventDefault();
+                this.handlePDFUpload(e.dataTransfer.files);
+                pdfUpload.style.borderColor = "var(--border-color)";
+            });
+        }
+
+        handlePDFUpload(files) {
+            const results = document.getElementById("pdfResults");
+            results.innerHTML = "";
+            Array.from(files).forEach(file => {
+                const div = document.createElement("div");
+                div.className = "status-message status-info";
+                div.textContent = `📄 Processed: ${file.name}`;
+                results.appendChild(div);
+                this.userProgress.pdfsProcessed++;
+                this.saveUserData();
+            });
+        }
+
+        // AI Tutor
+        askTutor() {
+            const question = document.getElementById("tutorQuestion").value.trim();
+            const subject = document.getElementById("subjectSelect").value;
+            const response = document.getElementById("tutorResponse");
+
+            if (!question) {
+                response.innerHTML = `<div class="status-message status-error">⚠️ Please enter a question.</div>`;
+                return;
+            }
+
+            response.innerHTML = `<div class="loading"></div> Thinking...`;
+
+            setTimeout(() => {
+                response.innerHTML = `<div class="status-message status-success">🤖 Answer for <b>${subject}</b>: "${question}" → This is a sample AI response.</div>`;
+            }, 1500);
+        }
+
+        // Quiz Generator
+        generateQuiz() {
+            const topic = document.getElementById("quizTopic").value.trim();
+            const numQuestions = parseInt(document.getElementById("numQuestions").value);
+            const quizResults = document.getElementById("quizResults");
+
+            if (!topic) {
+                quizResults.innerHTML = `<div class="status-message status-error">⚠️ Enter a quiz topic.</div>`;
+                return;
+            }
+
+            quizResults.innerHTML = "";
+            for (let i = 1; i <= numQuestions; i++) {
+                const div = document.createElement("div");
+                div.className = "quiz-question";
+                div.innerHTML = `<p>Q${i}: Sample question on ${topic}?</p>
+                    <ul class="quiz-options">
+                        <li class="quiz-option">Option A</li>
+                        <li class="quiz-option">Option B</li>
+                        <li class="quiz-option">Option C</li>
+                        <li class="quiz-option">Option D</li>
+                    </ul>`;
+                quizResults.appendChild(div);
+            }
+
+            this.userProgress.totalQuizzes++;
+            this.saveUserData();
+        }
+
+        // Flashcards
+        createFlashcards() {
+            const topic = document.getElementById("flashcardTopic").value.trim();
+            const results = document.getElementById("flashcardsResults");
+
+            if (!topic) {
+                results.innerHTML = `<div class="status-message status-error">⚠️ Enter a flashcard topic.</div>`;
+                return;
+            }
+
+            results.innerHTML = "";
+            for (let i = 1; i <= 5; i++) {
+                const card = document.createElement("div");
+                card.className = "quiz-question";
+                card.textContent = `Flashcard ${i} for ${topic}`;
+                results.appendChild(card);
+            }
+
+            this.userProgress.flashcardsCreated += 5;
+            this.saveUserData();
+        }
+
+        // Progress Tracking
+        updateProgress() {
+            document.getElementById("progressStats").innerHTML = `
+                <p>📄 PDFs Processed: ${this.userProgress.pdfsProcessed}</p>
+                <p>📝 Quizzes Taken: ${this.userProgress.totalQuizzes}</p>
+                <p>🃏 Flashcards Created: ${this.userProgress.flashcardsCreated}</p>
+            `;
+        }
+
+        // Offline Mode
+        toggleOfflineMode() {
+            alert("📱 Offline mode toggled. Content will be cached locally.");
+        }
+
+        // Network Monitoring
+        initNetworkMonitoring() {
+            const statusEl = document.getElementById("networkStatus");
+            const update = () => {
+                this.isOnline = navigator.onLine;
+                statusEl.textContent = this.isOnline ? "🌐 Online" : "⚠️ Offline";
+                statusEl.className = `network-status ${this.isOnline ? "network-online" : "network-offline"}`;
+            };
+            window.addEventListener("online", update);
+            window.addEventListener("offline", update);
+            update();
+        }
+
+        // Language System (basic demo)
+        setLanguage(lang) {
+            this.currentLanguage = lang;
+            this.updateLanguage();
+            localStorage.setItem("language", lang);
+        }
+
+        updateLanguage() {
+            document.querySelectorAll("[data-translate]").forEach(el => {
+                // For demo: Just show [lang]:originalText
+                el.textContent = `[${this.currentLanguage}] ${el.getAttribute("data-translate")}`;
+            });
+        }
+
+        // Service Worker
+        initServiceWorker() {
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("service-worker.js").catch(console.error);
+            }
+        }
+
+        // Save/Load User Data
+        saveUserData() {
+            localStorage.setItem("afritutor-progress", JSON.stringify(this.userProgress));
+            this.updateProgress();
+        }
+
+        loadUserData() {
+            const saved = localStorage.getItem("afritutor-progress");
+            if (saved) this.userProgress = JSON.parse(saved);
+            this.updateProgress();
+        }
+
+        // Install Prompt
+        setupInstallPrompt() {
+            let deferredPrompt;
+            const installBtn = document.getElementById("installBtn");
+            window.addEventListener("beforeinstallprompt", (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installBtn.style.display = "inline-block";
+
+                installBtn.addEventListener("click", () => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then(() => deferredPrompt = null);
+                });
+            });
+        }
+
+        // Simulate App Loading
+        simulateAppLoading() {
+            const progress = document.getElementById("appProgress");
+            let width = 0;
+            const interval = setInterval(() => {
+                width += 10;
+                progress.style.width = width + "%";
+                if (width >= 100) clearInterval(interval);
+            }, 200);
+        }
+
+        // Modal helpers
+        openModal(id) {
+            document.getElementById(id).classList.add("active");
+        }
+        closeModal(id) {
+            document.getElementById(id).classList.remove("active");
+        }
+    
+
+        const app = new AfriTutorApp();
+
+        // Expose methods globally for inline onclick=""
+        window.askTutor = () => app.askTutor();
+        window.generateQuiz = () => app.generateQuiz();
+        window.createFlashcards = () => app.createFlashcards();
+        window.toggleOfflineMode = () => app.toggleOfflineMode();
+        window.openModal = (id) => app.openModal(id);
+        window.closeModal = (id) => app.closeModal(id);
+    </script>
+    </body>
+    
+    </html>

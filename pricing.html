@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfriTutor - Pricing</title>
+    <meta name="description" content="AfriTutor pricing plans for African learners.">
+    <link rel="stylesheet" href="index.html">
+    <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --accent-blue: #0ea5e9;
+            --accent-green: #10b981;
+            --border-color: rgba(148, 163, 184, 0.2);
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                --card-bg: rgba(30, 41, 59, 0.95);
+                --text-primary: #f1f5f9;
+                --text-secondary: #94a3b8;
+                --accent-blue: #0ea5e9;
+                --accent-green: #10b981;
+                --border-color: rgba(148, 163, 184, 0.2);
+                --shadow: rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px var(--shadow);
+            padding: 2rem 1.5rem;
+            min-width: 260px;
+            max-width: 320px;
+            flex: 1 1 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .plan-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            width: 100%;
+        }
+
+        .plan-features li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-features li::before {
+            content: "✔️";
+            color: var(--accent-green);
+        }
+
+        .plan-action {
+            background: var(--accent-blue);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .plan-action:hover {
+            background: #0369a1;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem 1rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 900px) {
+            .pricing-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">AfriTutor</a>
+        <nav>
+            <a href="index.html" style="color:var(--accent-blue);text-decoration:none;font-weight:600;">Home</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Pricing Plans</h1>
+        <div class="subtitle">Affordable learning for every African student. Choose your plan and start learning
+            smarter!</div>
+        <div class="pricing-grid">
+            <div class="plan-card">
+                <div class="plan-title">Free</div>
+                <div class="plan-price">$0<span style="font-size:1rem;font-weight:400;">/mo</span></div>
+                <div class="plan-desc">Get started with essential features for students and teachers.</div>
+                <ul class="plan-features">
+                    <li>AI Tutor (limited)</li>
+                    <li>PDF Upload & Summarizer</li>
+                    <li>Quiz Generator (5 questions)</li>
+                    <li>Progress Tracking</li>
+                    <li>Multi-language Support</li>
+                </ul>
+                <a href="index.html#register" class="plan-action">Get Started</a>
+            </div>
+            <div class="plan-card" style="border:2px solid var(--accent-blue);">
+                <div class="plan-title">Pro</div>
+                <div class="plan-price">$3<span style="font-size:1rem;font-weight:400;">/mo</span></div>
+                <div class="plan-desc">Unlock all features for advanced learning and teaching.</div>
+                <ul class="plan-features">
+                    <li>Unlimited AI Tutor</li>
+                    <li>Full PDF Processing</li>
+                    <li>Quiz Generator (up to 20 questions)</li>
+                    <li>Export & Offline Mode</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="index.html#register" class="plan-action">Upgrade to Pro</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-title">School/Group</div>
+                <div class="plan-price">Custom</div>
+                <div class="plan-desc">For schools, NGOs, and organizations. Bulk access and custom features.</div>
+                <ul class="plan-features">
+                    <li>All Pro features</li>
+                    <li>Admin Dashboard</li>
+                    <li>Bulk Student Accounts</li>
+                    <li>Custom Integrations</li>
+                    <li>Dedicated Support</li>
+                </ul>
+                <a href="mailto:support@afritutor.com" class="plan-action">Contact Us</a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        &copy; 2024 AfriTutor. All rights reserved.
+    </footer>
+</body>
+
+</html>

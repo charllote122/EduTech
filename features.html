@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfriTutor - Features</title>
+    <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --accent-blue: #0ea5e9;
+            --border-color: rgba(148, 163, 184, 0.2);
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                --card-bg: rgba(30, 41, 59, 0.95);
+                --text-primary: #f1f5f9;
+                --text-secondary: #94a3b8;
+                --accent-blue: #0ea5e9;
+                --border-color: rgba(148, 163, 184, 0.2);
+                --shadow: rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active {
+            color: var(--accent-blue);
+            background: rgba(14, 165, 233, 0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px var(--shadow);
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem 1rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">AfriTutor</a>
+        <nav class="nav-links">
+            <a href="features.html" class="nav-item active">Features</a>
+            <a href="pricing.html" class="nav-item">Pricing</a>
+            <a href="about.html" class="nav-item">About</a>
+            <a href="support.html" class="nav-item">Support</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Features</h1>
+        <div class="card">
+            <h2>AI Personal Tutor</h2>
+            <p>Ask questions and get instant, personalized explanations in your language.</p>
+        </div>
+        <div class="card">
+            <h2>PDF Upload & Processing</h2>
+            <p>Upload your notes, textbooks, or assignments and let AfriTutor summarize or quiz you on the content.</p>
+        </div>
+        <div class="card">
+            <h2>Quiz Generator</h2>
+            <p>Create interactive quizzes from any topic or uploaded material to test your knowledge.</p>
+        </div>
+        <div class="card">
+            <h2>Multi-Language Support</h2>
+            <p>Learn in English, Kiswahili, Yorùbá, Hausa, Amharic, French, and more.</p>
+        </div>
+        <div class="card">
+            <h2>Offline Learning</h2>
+            <p>Access your study materials and tools even without an internet connection.</p>
+        </div>
+        <div class="card">
+            <h2>Progress Tracking</h2>
+            <p>Monitor your learning journey and celebrate your achievements.</p>
+        </div>
+    </div>
+    <footer class="footer">
+        &copy; 2025 AfriTutor. Built for African learners.
+    </footer>
+</body>
+
+</html>

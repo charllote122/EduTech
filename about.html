@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about AfriTutor, an AI-powered EdTech platform for African learners.">
+    <title>AfriTutor - About</title>
+    <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --accent-blue: #0ea5e9;
+            --border-color: rgba(148, 163, 184, 0.2);
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                --card-bg: rgba(30, 41, 59, 0.95);
+                --text-primary: #f1f5f9;
+                --text-secondary: #94a3b8;
+                --accent-blue: #0ea5e9;
+                --border-color: rgba(148, 163, 184, 0.2);
+                --shadow: rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active {
+            color: var(--accent-blue);
+            background: rgba(14, 165, 233, 0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px var(--shadow);
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            outline: none;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem 1rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">AfriTutor</a>
+        <nav class="nav-links">
+            <a href="features.html" class="nav-item">Features</a>
+            <a href="pricing.html" class="nav-item">Pricing</a>
+            <a href="about.html" class="nav-item active">About</a>
+            <a href="support.html" class="nav-item">Support</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>About AfriTutor</h1>
+        <div class="card" tabindex="0">
+            <h2>Our Vision</h2>
+            <p>To bridge the education gap in Africa by providing every learner with access to quality, AI-powered
+                educational resources in their own language, even offline.</p>
+        </div>
+        <div class="card" tabindex="0">
+            <h2>Our Mission</h2>
+            <p>AfriTutor empowers African learners with AI-powered educational tools that work in multiple languages and
+                low-data environments. We believe every student deserves access to quality learning, no matter where
+                they are.</p>
+        </div>
+        <div class="card" tabindex="0">
+            <h2>Why AfriTutor?</h2>
+            <ul>
+                <li>Designed for African students, teachers, and parents</li>
+                <li>Works offline and on low-bandwidth connections</li>
+                <li>Supports local languages and cultures</li>
+                <li>Built by a passionate, diverse team</li>
+            </ul>
+        </div>
+        <div class="card" tabindex="0">
+            <h2>Contact</h2>
+            <p>For partnerships, feedback, or questions, email us at <a href="mailto:support@afritutor.com" lang="en"
+                    style="color:var(--accent-blue);">support@afritutor.com</a></p>
+        </div>
+    </div>
+    <footer class="footer">
+        &copy; 2025 AfriTutor. Built for African learners.
+    </footer>   
+</body>
+</html>
